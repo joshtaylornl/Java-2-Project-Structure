@@ -19,6 +19,7 @@ public class GameClient {
      * @param args
      */
     public static void main(String[] args) {
+        Thread thread = Thread.currentThread();
 
         //Game Server location
         String hostName = "localhost";
@@ -33,23 +34,20 @@ public class GameClient {
                         new InputStreamReader(gameSocket.getInputStream()));
         ) {
 
-            //TODO replace all this
-            BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
-            String fromServer;
-            String fromUser;
+            //TODO communicate with server
 
-            while ((fromServer = in.readLine()) != null) {
-                System.out.println("Server: " + fromServer);
-                if (fromServer.equals("Bye."))
-                    break;
+            //Get the hand from the Server using an ObjectInputStream. Store it locally - why not use a Player Object
+            //Wait on some game loop and play your cards as needed
+            //Playing a card is sending a card from the Player object to the server via an ObjectOutputStream
+            //End when all the cards are played (to be determined by the game protocol)
 
-                fromUser = stdIn.readLine();
-                if (fromUser != null) {
-                    System.out.println("Client: " + fromUser);
-                    out.println(fromUser);
-                }
+            //TODO remove this sleep
+            try {
+                thread.sleep(10000);    //10 seconds
+                //Thread dormancy, delayed by one second
+            } catch (InterruptedException e) {
+                System.out.println("Test Thread error");
             }
-
 
             //game is over
         } catch (UnknownHostException e) {

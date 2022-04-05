@@ -13,6 +13,7 @@ import java.util.LinkedList;
  */
 public class GameServer {
 
+    //TODO test this with 3 players
     public static final int NUMBER_PLAYERS = 2;
 
     /**
@@ -37,16 +38,22 @@ public class GameServer {
             System.exit(-1);
         }
 
+        //Debug - be sure you got the connections you wanted
         System.out.printf("Connections: %d", clientSocketList.size());
 
         //Start the game
         //TODO you need to give it the players information
+        //TODO consider creating the players based on the connections above and adding them to the game protocol
         GameProtocol gameProtocol = new GameProtocol();
 
         //Create the threads
+        for (int i = 0; i < clientSocketList.size(); i++) {
+            new GameServerThread(gameProtocol, clientSocketList.get(i), "Player " + String.valueOf(i+1)).run();
+        }
 
+        //TODO do a while on the game loop
 
-
+        //TODO print the results
     }
 
 
