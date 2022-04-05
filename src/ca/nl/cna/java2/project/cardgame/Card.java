@@ -1,12 +1,14 @@
 package ca.nl.cna.java2.project.cardgame;
 
 
+import java.io.Serializable;
+
 /**
  * Class to represent a card between 1 and 100. The card can be wild
  *
  * @author Josh
  */
-public class Card implements Comparable<Card>{
+public class Card implements Comparable<Card>, Serializable {
 
     private final int value;
     private boolean wild;

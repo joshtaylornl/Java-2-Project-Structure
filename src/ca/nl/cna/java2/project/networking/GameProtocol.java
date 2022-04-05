@@ -9,7 +9,7 @@ package ca.nl.cna.java2.project.networking;
  * when the game is over and there are no more cards to play.
  *
  * TODO Add the game loop. Make sure that you are saving everything for debugging.
- * 
+ *
  */
 public class GameProtocol {
 
