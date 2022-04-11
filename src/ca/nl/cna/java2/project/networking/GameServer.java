@@ -1,5 +1,7 @@
 package ca.nl.cna.java2.project.networking;
 
+import ca.nl.cna.java2.project.cardgame.Player;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -42,14 +44,21 @@ public class GameServer {
         System.out.printf("Connections: %d", clientSocketList.size());
 
         //Start the game
+        LinkedList<Player> playerList = new LinkedList<Player>();
+        playerList.add(new Player("Josh"));
+        playerList.add(new Player("Chris Rock"));
+
         //TODO you need to give it the players information
         //TODO consider creating the players based on the connections above and adding them to the game protocol
         GameProtocol gameProtocol = new GameProtocol();
 
         //Create the threads
+        //TODO: use the player object too
+        LinkedList<GameServerThread> threadList = new LinkedList<>();
         for (int i = 0; i < clientSocketList.size(); i++) {
-            new GameServerThread(gameProtocol, clientSocketList.get(i), "Player " + String.valueOf(i+1)).run();
+            threadList.add(new GameServerThread(gameProtocol, clientSocketList.get(i), playerList.get(i)));
         }
+        threadList.forEach(thread ->  thread.start());
 
         //TODO do a while on the game loop
 
