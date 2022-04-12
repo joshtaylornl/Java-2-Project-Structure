@@ -37,6 +37,29 @@ public class Player {
     }
 
     /**
+     * Delete the hand
+     */
+    public void deleteHand(){
+        this.hand = new LinkedList<>();
+    }
+
+    /**
+     * Add a card to a hand
+     * @param card
+     */
+    public void addCard(Card card){
+        this.hand.add(card);
+    }
+
+    /**
+     * Draw a card
+     * @return Card
+     */
+    public Card drawCard(){
+        return this.hand.removeFirst();
+    }
+
+    /**
      * Set the players hand
      * @param hand
      */

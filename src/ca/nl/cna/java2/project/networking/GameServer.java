@@ -1,5 +1,6 @@
 package ca.nl.cna.java2.project.networking;
 
+import ca.nl.cna.java2.project.cardgame.CardDeck;
 import ca.nl.cna.java2.project.cardgame.Player;
 
 import java.io.IOException;
@@ -50,7 +51,10 @@ public class GameServer {
 
         //TODO you need to give it the players information
         //TODO consider creating the players based on the connections above and adding them to the game protocol
-        GameProtocol gameProtocol = new GameProtocol();
+        CardDeck cardDeck = new CardDeck();
+        GameProtocol gameProtocol = new GameProtocol(cardDeck, playerList);
+
+
 
         //Create the threads
         //TODO: use the player object too
@@ -60,10 +64,13 @@ public class GameServer {
         }
         threadList.forEach(thread ->  thread.start());
 
-        //TODO do a while on the game loop
+        //TODO Maybe make this thread wait on the game if you have issues
 
-        //TODO print the results
+        //TODO Print the winner (from Game object) and say goodbye
+
     }
+
+
 
 
 }

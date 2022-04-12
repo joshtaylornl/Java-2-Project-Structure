@@ -1,5 +1,10 @@
 package ca.nl.cna.java2.project.networking;
 
+import ca.nl.cna.java2.project.cardgame.CardDeck;
+import ca.nl.cna.java2.project.cardgame.Player;
+
+import java.util.LinkedList;
+
 /**
  * This is the object that manages the game between all the threads.
  *
@@ -14,16 +19,23 @@ package ca.nl.cna.java2.project.networking;
 public class GameProtocol {
 
     private Status gameStatus;
+    private CardDeck cardDeck;
+    private LinkedList<Player> playerList;
+
+    //TODO Make a method that's just like RobotOneHundreds roundWinner
+    //It will use the players in this player list
+    //TODO be careful that the player has a card at the round - you are playing on the EDGE of the list
 
     public enum Status{
         NOT_STARTED, PLAY_IN_PROGRESS, GAME_OVER
     }
 
 
-    //TODO fix this
-    //TODO consider adding player objects
-    public GameProtocol() {
+    public GameProtocol(CardDeck cardDeck, LinkedList<Player> playerList) {
+        this.cardDeck = cardDeck;
+        this.playerList = playerList;
         this.gameStatus = Status.NOT_STARTED;
+        this.cardDeck.deal(this.playerList);
     }
 
     /**

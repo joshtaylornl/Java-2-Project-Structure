@@ -11,6 +11,11 @@ import java.net.UnknownHostException;
  * Client which will connect to the server. After the connection is made, the client will receive the hand of cards
  * and then proceed to play the cards as the game goes on until finished.
  *
+ * Step 1: Connect to the client (it's fixed)
+ * Step 2: Send the players name to the server (do this last)
+ * Step 3: Receive it's Hand of cards
+ * Step 4: Play a card each round (in response to the last hand result)
+ *
  */
 public class GameClient {
 
